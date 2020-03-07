@@ -69,8 +69,6 @@ app.post('/checkStudent', (req, res)=>{
     
             res.send(result);
         })
-        
-    
     })  
 })
 
@@ -93,9 +91,49 @@ app.post('/checkCourse', (req, res)=>{
     
             res.send(result);
         })
+    }) 
+})
+
+app.get('/courseDetails', (req, res)=>{
+
+    MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+    
+        var db = client.db('theMITPost')
+        db.collection('courses').find({}).toArray((err, result)=>{
+            if(err) throw err
+    
+            res.send(result);
+        })
         
     
     }) 
+})
+
+app.get('/studentDetails', (req, res)=>{
+
+    MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+    
+        var db = client.db('theMITPost')
+        db.collection('students').find({}).toArray((err, result)=>{
+            if(err) throw err
+    
+            res.send(result);
+        })
+        
+    
+    }) 
+})
+
+app.get('/admit', (req, res)=>{
+    res.render('admit', {});
 })
 
 app.listen(3000)

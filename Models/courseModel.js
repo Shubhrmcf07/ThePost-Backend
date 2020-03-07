@@ -1,17 +1,12 @@
 var mongoose = require('mongoose')
 
 var Course = mongoose.model('Course', {
-    id : {
-        type: Number
-    },
-
-
-    Name: {
+    name: {
         type: String, 
         required: true
     }, 
 
-    Year : {
+    year : {
         type: Number
     }, 
 

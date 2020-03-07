@@ -1,17 +1,17 @@
 var mongoose = require('mongoose')
 
 var Student = mongoose.model('Student', {
-    Name: {
+    name: {
         type: String, 
         required: true,
         trim: true
     }, 
 
-    Year: {
+    year: {
         type: Number
     },
 
-    Registration: {
+    regno: {
         type: String,
         required: true
     }, 

@@ -64,7 +64,8 @@ app.post('/checkStudent', (req, res)=>{
         }
     
         var db = client.db('theMITPost')
-        db.collection('students').find(req.body).toArray((err, result)=>{
+        var reg = "/" + req.body.name + "/"
+        db.collection('students').find({name: {$regex: req.body.name, $options: "i"}}).toArray((err, result)=>{
             if(err) throw err
     
             res.send(result);
@@ -86,7 +87,7 @@ app.post('/checkCourse', (req, res)=>{
         }
     
         var db = client.db('theMITPost')
-        db.collection('courses').find(req.body).toArray((err, result)=>{
+        db.collection('courses').find({name : {$regex : req.body.name, $options : "i"}}).toArray((err, result)=>{
             if(err) throw err
     
             res.send(result);
@@ -94,7 +95,7 @@ app.post('/checkCourse', (req, res)=>{
     }) 
 })
 
-app.get('/courseDetails', (req, res)=>{
+app.post('/courseDetails', (req, res)=>{
 
     MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client)=>{
         if(err){
@@ -113,7 +114,7 @@ app.get('/courseDetails', (req, res)=>{
     }) 
 })
 
-app.get('/studentDetails', (req, res)=>{
+app.post('/studentDetails', (req, res)=>{
 
     MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client)=>{
         if(err){
@@ -168,13 +169,6 @@ app.post('/admit', (req, res)=>{
                 }
             })
         })
-
-        
-
-        
-
-        
-        
 
         // db.collection('students').findOneAndUpdate({regno : req.body.regno}, {$set : {Courses : req.body.name}})
 

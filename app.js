@@ -126,14 +126,64 @@ app.get('/studentDetails', (req, res)=>{
             if(err) throw err
     
             res.send(result);
-        })
-        
-    
+        })   
     }) 
 })
 
 app.get('/admit', (req, res)=>{
     res.render('admit', {});
+})
+
+app.post('/admit', (req, res)=>{
+    MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+    
+        var db = client.db('theMITPost')
+
+        var studYr
+        var courseYr
+
+        db.collection('students').find({regno : req.body.regno}).toArray((err, response)=>{
+            if(err) throw err
+
+            studYr = response[0].year
+
+            db.collection('courses').find({name: req.body.name}).toArray((err, result)=>{
+                if(err) throw err
+    
+                courseYr = result[0].year
+    
+                if(courseYr !== studYr)
+                {
+                    res.send("Invalid Admission")
+                }
+
+                else {
+                    var course = {name : req.body.name}
+                    db.collection('courses').findOneAndUpdate({name: req.body.name}, {$inc : {numStuds : 1}})
+                    db.collection('students').findOneAndUpdate({regno: req.body.regno}, {$push : {Courses : course}})
+                }
+            })
+        })
+
+        
+
+        
+
+        
+        
+
+        // db.collection('students').findOneAndUpdate({regno : req.body.regno}, {$set : {Courses : req.body.name}})
+
+        // db.collection('students').find({}).toArray((err, result)=>{
+        //     if(err) throw err
+
+        //     res.send(result)
+        // })
+    }) 
 })
 
 app.listen(3000)

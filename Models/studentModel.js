@@ -17,7 +17,7 @@ var Student = mongoose.model('Student', {
     }, 
     
     Courses: {
-        type: Array
+        type: [{name : String}]
     }
 })
 

@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', (req, res)=>{
 	
-	res.send({"routes": ["/addStudent", "/checkStudent", "/studentDetails", "/addCourse", "/checkCourse", "/courseDetails", "/admit"]})
+	res.send({"routes": [{"/addStudent" : "Demands name, year,regno in req.body"}, {"/checkStudent": "Demands the string to be searched for as 'name'"}, {"/studentDetails": ""}, {"/addCourse": "Demands name, year"}, {"/checkCourse": "Demands string to be searched for"}, {"/courseDetails": ""}, {"/admit": "Requires regno, course name as 'name'"}]})
 })
 
 app.get('/addStudent', (req, res)=>{

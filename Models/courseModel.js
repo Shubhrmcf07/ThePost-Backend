@@ -7,11 +7,13 @@ var Course = mongoose.model('Course', {
     }, 
 
     year : {
-        type: Number
+        type: Number,
+	required: true
     }, 
 
     numStuds : {
-        type: Number
+        type: Number,
+	required: true
     }
 })
 

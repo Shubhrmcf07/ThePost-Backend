@@ -8,7 +8,8 @@ var Student = mongoose.model('Student', {
     }, 
 
     year: {
-        type: Number
+        type: Number,
+	required: true
     },
 
     regno: {

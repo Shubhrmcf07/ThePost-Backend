@@ -5,7 +5,7 @@ require('./db/mongodb')
 var Student = require('./Models/studentModel')
 var course = require('./Models/courseModel')
 
-var connectionUrl = 'mongodb://127.0.0.1:27017';
+var connectionUrl = "mongodb+srv://shubham:shubhrmcf@cluster0-utlbk.mongodb.net/theMITPosttest?retryWrites=true&w=majority";
 
 var {MongoClient, ObjectID} = require('mongodb')
 

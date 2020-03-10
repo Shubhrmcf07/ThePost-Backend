@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 
-mongoose.connect('mongodb://127.0.0.1:27017/theMITPost', {
+mongoose.connect("mongodb+srv://shubham:shubhrmcf@cluster0-utlbk.mongodb.net/theMITPost?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useCreateIndex: true
 })

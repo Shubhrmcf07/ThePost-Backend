@@ -17,6 +17,11 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+app.get('/', (req, res)=>{
+	
+	res.send({"routes": ["/addStudent", "/checkStudent", "/studentDetails", "/addCourse", "/checkCourse", "/courseDetails", "/admit"]})
+})
+
 app.get('/addStudent', (req, res)=>{
     res.render('addStudent', {})
 })
